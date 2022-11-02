@@ -18,6 +18,16 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
     }
+    public boolean usKontrol(int[][] degerler){
+        int fark=degerler[0][1]-degerler[1][1];
+        int farkKontrol;
+        for(int i=0;i<polinom.getAdet()-1;i++){
+            farkKontrol=degerler[i][1]-degerler[i+1][1];
+            if(fark!=farkKontrol||degerler[i][1]==0)
+                return false;
+        }
+        return true;
+    }
     //Polinom sınıfından bağlı liste oluşturmak için nesne
     Polinom polinom = new Polinom();
 
@@ -39,6 +49,8 @@ public class Main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 153, 0));
@@ -82,6 +94,15 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Üs tam mı?");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Üs tam :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,6 +112,10 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton3)
+                        .addGap(158, 158, 158)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
@@ -133,7 +158,10 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4)
+                            .addComponent(jLabel5))
                         .addGap(27, 27, 27))))
         );
 
@@ -183,7 +211,35 @@ public class Main extends javax.swing.JFrame {
                 us = Integer.parseInt(a);
             }
 
-        } //girilen değerin<=5 karakter olduğu spesifik olmayan tüm durumlar için
+        } 
+        else if(jTextField1.getText().length()==2&&jTextField1.getText().charAt(0)=='-'){
+            if(jTextField1.getText().charAt(1)=='x'||jTextField1.getText().charAt(1)=='X')
+            {
+                katSayi=-1;
+                us=1;
+            }else if(jTextField1.getText().charAt(1)>='1'&&jTextField1.getText().charAt(1)<='9'){
+                a += jTextField1.getText().charAt(1);
+                katSayi=Integer.parseInt(a)*-1;
+                us=1;
+            }
+        }else if(jTextField1.getText().length()==2&&jTextField1.getText().charAt(0)=='+'){
+            if(jTextField1.getText().charAt(1)=='x'||jTextField1.getText().charAt(1)=='X')
+            {
+                katSayi=1;
+                us=1;
+            }else if(jTextField1.getText().charAt(1)>='1'&&jTextField1.getText().charAt(1)<='9'){
+                a += jTextField1.getText().charAt(1);
+                katSayi=Integer.parseInt(a);
+                us=1;
+            }
+        }
+        else if(jTextField1.getText().length()==1&&jTextField1.getText().charAt(0)>='1'&&jTextField1.getText().charAt(0)<='9'){
+            a += jTextField1.getText().charAt(0);
+            katSayi=Integer.parseInt(a);
+            us=0;
+            
+        }
+            //girilen değerin<=5 karakter olduğu spesifik olmayan tüm durumlar için
         else {
             plnm = jTextField1.getText();
             a = "";
@@ -249,6 +305,12 @@ public class Main extends javax.swing.JFrame {
         polinom.listeSifirla();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        boolean usTamMi;
+        usTamMi=usKontrol(polinom.degerler());
+        jLabel5.setText(jLabel5.getText()+" "+usTamMi);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -288,10 +350,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
