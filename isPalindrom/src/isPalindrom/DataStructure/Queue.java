@@ -23,12 +23,10 @@ public class Queue {
           Node newNode=new Node(element);
           rear.setNext(newNode);
           rear=newNode;
-          System.out.println(element+"queue eklendi");
         }else{
           Node newNode=new Node(element);
           front=newNode;
           rear=newNode;
-          System.out.println(element+"queue eklendi");
         }
         ++size;
     }
@@ -37,7 +35,6 @@ public class Queue {
         if(!isEmpty()){
             Node tmp=front;
             front=front.getNext();
-            System.out.println(tmp.getElement()+"queue silindi");
             return tmp.getElement();
         }
         else{
