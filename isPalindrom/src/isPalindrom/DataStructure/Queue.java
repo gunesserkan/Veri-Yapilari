@@ -8,6 +8,7 @@ public class Queue {
    public Queue() {
         front = null;
         rear=null;
+        size=0;
     }
     //kuyrukta eleman olup olmadığını kontrol eder.
     public boolean isEmpty() {
