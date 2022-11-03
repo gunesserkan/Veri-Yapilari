@@ -9,12 +9,13 @@ public class Main extends javax.swing.JFrame {
     public Stack stack;
 
     public Main() {
-        queue = new Queue();
-        stack = new Stack();
+
         initComponents();
     }
 
     public boolean isPal(String str) {
+        queue = new Queue();
+        stack = new Stack();
         int len = str.length();
         for (int i = 0; i < len; i++) {
             String character = String.valueOf(str.charAt(i));
@@ -60,7 +61,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        jLabel2.setText("İfade Polindrom: ?");
+        jLabel2.setText("İfade Polindrom mu: ?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,6 +93,8 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
+        jLabel2.getAccessibleContext().setAccessibleName("İfade Palindrom mu: ?");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -99,10 +102,10 @@ public class Main extends javax.swing.JFrame {
         String str = jTextField1.getText();
         boolean charactersAreEqual = isPal(str);
         if (charactersAreEqual == true) {
-            jLabel2.setText("İfade Polindrom: evet");
+            jLabel2.setText("İfade Polindrom mu? evet");
 
         } else {
-            jLabel2.setText("İfade Polindrom: hayır");
+            jLabel2.setText("İfade Polindrom mu? hayır");
         }
         queue = new Queue();
         stack = new Stack();
