@@ -54,7 +54,6 @@ public class Main {
     }
 
     public static String farklıDegerler(int[] array1, int[] array2) {
-        // int[] array3 = new int[array1.length];
         String degerler = "";
         Hash[] hash = new Hash[array1.length];
         for (int i = 0; i < hash.length; i++) {
@@ -81,7 +80,6 @@ public class Main {
         for (int i = 0; i < hash.length; i++) {
             if (hash[(array1[i] % hash.length)] != null) {
                 if (hash[(array1[i] % hash.length)].getValue() != array1[i]) {
-                    //array3[i]=array1[i];
                     degerler += String.valueOf(array1[i]) + " ";
                 } else {
                     int j = array1[i] % hash.length;
@@ -98,11 +96,9 @@ public class Main {
                     }
                 }
             } else {
-                //array3[i]=array1[i];
                 degerler += String.valueOf(array1[i]) + " ";
             }
         }
-        //return array3;
         return degerler;
 
     }
